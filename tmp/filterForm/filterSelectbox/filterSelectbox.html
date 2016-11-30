@@ -1,0 +1,34 @@
+<div layout="row" layout-align="center center">
+  <md-button class="md-icon-button md-primary md-hue-1 ml0"
+             aria-label="Remove filter"
+             flex="none"
+             ng-click="vm.removeFilter(vm.controlType)">
+    <md-icon class="material-icons">remove_circle_outline</md-icon>
+  </md-button>
+
+  <label flex="25">{{vm.label}}</label>
+
+  <md-input-container flex="75">
+    <md-icon class="material-icon">{{vm.labelIcon}}</md-icon>
+    <md-select ng-if="!vm.multiple && !vm.hierarchy" ng-change="vm.changed()" ng-model="vm.value" placeholder="{{vm.label}}">
+      <md-option ng-repeat="opt in vm.options" value="{{opt.value}}">
+        {{opt.name}}
+      </md-option>
+    </md-select>
+
+    <md-select ng-if="vm.multiple" multiple ng-change="vm.changed()" ng-model="vm.value" placeholder="{{vm.label}}">
+      <md-option ng-repeat="opt in vm.options" value="{{opt.value}}">
+        {{opt.name}}
+      </md-option>
+    </md-select>
+
+    <md-select ng-if="vm.hierarchy" ng-change="vm.changed()" ng-model="vm.value" placeholder="{{vm.label}}">
+      <md-optgroup ng-repeat="groups in vm.options" label="{{groups.name}}">
+         <md-option ng-repeat="opt in groups.value" value="{{opt.value}}">
+          {{opt.name}}
+        </md-option>
+      </md-optgroup>
+    </md-select>
+
+  </md-input-container>
+</div>
